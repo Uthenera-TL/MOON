@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🌕 中秋祝福 · 月满情浓</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0b1a2f;
+            background-image: radial-gradient(circle at 30% 20%, #1e3a5f 0%, #0a1220 80%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', sans-serif;
+            overflow: hidden;
+            position: relative;
+            padding: 12px;
+        }
+
+        /* 星星闪烁背景 */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff9e6;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 8px #ffe9a7;
+            animation: twinkle 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.4); }
+        }
+
+        /* 主卡片 */
+        .card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 380px;
+            background: rgba(18, 30, 45, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 48px 48px 40px 40px;
+            border: 1px solid rgba(255, 235, 150, 0.3);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 215, 100, 0.2) inset;
+            padding: 32px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: cardGlow 4s infinite alternate;
+            transition: all 0.3s;
+        }
+
+        @keyframes cardGlow {
+            0% { box-shadow: 0 25px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 220, 120, 0.2); }
+            100% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 220, 120, 0.5); }
+        }
+
+        /* 月亮容器 */
+        .moon-wrapper {
+            position: relative;
+            margin-top: 4px;
+            margin-bottom: 16px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .moon-wrapper:active {
+            transform: scale(0.92);
+        }
+
+        .moon {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 35% 35%, #fff9d7, #ffe07a 50%, #f7b32b 90%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px 10px rgba(255, 220, 120, 0.7), 0 0 80px 20px rgba(255, 200, 50, 0.4);
+            position: relative;
+            animation: moonFloat 5s infinite ease-in-out;
+        }
+
+        /* 月桂小点缀 */
+        .moon::after {
+            content: "🌿";
+            position: absolute;
+            bottom: 12px;
+            right: 10px;
+            font-size: 18px;
+            opacity: 0.7;
+            transform: rotate(20deg);
+        }
+
+        .moon::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 18px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: rgba(210, 160, 30, 0.25);
+            box-shadow: 22px 8px 0 rgba(180, 130, 30, 0.2), 8px 28px 0 rgba(180, 130, 30, 0.2);
+        }
+
+        @keyframes moonFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 祝福标题 */
+        .title {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #fff3c9, #ffd966, #f7c948);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(255, 210, 70, 0.6);
+            transform: scale(1);
+            transition: all 0.3s;
+        }
+
+        .subhead {
+            font-size: 15px;
+            color: #b9d0e7;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            opacity: 0.9;
+            border-bottom: 1px dashed rgba(255, 220, 120, 0.4);
+            padding-bottom: 12px;
+            width: 80%;
+        }
+
+        /* 祝福语区域 */
+        .bless-box {
+            background: rgba(255, 245, 200, 0.1);
+            border-radius: 28px;
+            padding: 22px 16px;
+            margin: 6px 0 18px;
+            width: 100%;
+            border: 1px solid rgba(255, 220, 120, 0.25);
+            box-shadow: 0 0 20px rgba(255, 210, 100, 0.1) inset;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: all 0.3s;
+        }
+
+        .bless-text {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #f7ebc0;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+            font-weight: 400;
+            letter-spacing: 1px;
+            word-break: break-word;
+            transition: opacity 0.3s;
+        }
+
+        .highlight {
+            color: #ffde7a;
+            font-weight: 600;
+            text-shadow: 0 0 12px #ffb347;
+        }
+
+        /* 祝福语切换小点 */
+        .dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 14px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 235, 170, 0.4);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #ffd966;
+            width: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 12px #ffd966;
+        }
+
+        /* 按钮 */
+        .btn {
+            background: linear-gradient(145deg, #ffd966, #f0b31c);
+            border: none;
+            border-radius: 40px;
+            padding: 15px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #1d2b3f;
+            letter-spacing: 2px;
+            box-shadow: 0 12px 25px -5px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 245, 180, 0.6) inset, 0 0 20px rgba(255, 200, 50, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 16px;
+            width: 85%;
+            max-width: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 245, 180, 0.8) inset, 0 0 30px #ffd966;
+        }
+
+        .btn span {
+            font-size: 20px;
+        }
+
+        /* 飘落桂花花瓣 */
+        .petal {
+            position: fixed;
+            top: -20px;
+            font-size: 16px;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 5;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* 底部微光 */
+        .footer-light {
+            font-size: 11px;
+            color: #8ea6c0;
+            margin-top: 14px;
+            letter-spacing: 1px;
+            opacity: 0.6;
+        }
+
+        /* 适配小屏 */
+        @media (max-width: 380px) {
+            .card {
+                padding: 24px 14px 30px;
+                border-radius: 36px;
+            }
+            .title {
+                font-size: 22px;
+                letter-spacing: 4px;
+            }
+            .bless-text {
+                font-size: 15px;
+            }
+            .moon {
+                width: 80px;
+                height: 80px;
+            }
+            .moon-wrapper {
+                width: 100px;
+                height: 100px;
+            }
+            .btn {
+                font-size: 16px;
+                padding: 13px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 星星背景（动态生成） -->
+    <div class="stars" id="stars"></div>
+
+    <!-- 主卡片 -->
+    <div class="card">
+        <!-- 点击月亮也可切换祝福语 -->
+        <div class="moon-wrapper" id="moonClick">
+            <div class="moon"></div>
+        </div>
+
+        <div class="title">中秋快乐</div>
+        <div class="subhead">月满 · 团圆 · 平安</div>
+
+        <!-- 祝福语卡片 -->
+        <div class="bless-box">
+            <div class="bless-text" id="blessText">
+                愿<span class="highlight">月光</span>照亮你的归途，<br>
+                <span class="highlight">团圆</span>温暖你的心窝。<br>
+                中秋佳节，万事顺遂🌕
+            </div>
+            <!-- 指示点 -->
+            <div class="dots" id="dotsContainer">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+                <div class="dot" data-index="3"></div>
+                <div class="dot" data-index="4"></div>
+            </div>
+        </div>
+
+        <!-- 按钮：传递祝福 / 换一句 -->
+        <button class="btn" id="blessBtn">
+            <span>🥮</span> 换一句祝福 <span>🥮</span>
+        </button>
+
+        <div class="footer-light">轻触月亮 · 心意流转</div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- 祝福语库 ----------
+            const blessings = [
+                // 0
+                `愿<span class="highlight">月光</span>照亮你的归途，<br>
+                 <span class="highlight">团圆</span>温暖你的心窝。<br>
+                 中秋佳节，万事顺遂🌕`,
+                // 1
+                `<span class="highlight">月圆</span>人圆事事圆，<br>
+                 花好月好年年好。<br>
+                 祝你中秋快乐，阖家安康🏮`,
+                // 2
+                `一块<span class="highlight">月饼</span>，一份甜；<br>
+                 一轮<span class="highlight">明月</span>，一份念。<br>
+                 天涯共此时，千里共婵娟✨`,
+                // 3
+                `秋风清，秋月明，<br>
+                 愿你所念之人皆平安，<br>
+                 所盼之事皆如愿。<span class="highlight">中秋吉祥</span>🌿`,
+                // 4
+                `<span class="highlight">桂香</span>飘远，月色温柔，<br>
+                 愿生活如月饼般甜蜜，<br>
+                 日子如月光般清澈。<span class="highlight">团圆喜乐</span>🥮`
+            ];
+
+            // 当前索引
+            let currentIndex = 0;
+            const blessTextEl = document.getElementById('blessText');
+            const dots = document.querySelectorAll('.dot');
+            const blessBtn = document.getElementById('blessBtn');
+            const moonClick = document.getElementById('moonClick');
+
+            // 更新祝福语和激活点
+            function updateBlessing(index) {
+                // 取模确保循环
+                const safeIndex = ((index % blessings.length) + blessings.length) % blessings.length;
+                if (safeIndex === currentIndex && blessTextEl.innerHTML === blessings[safeIndex]) {
+                    // 如果内容一样并且是同一索引，也刷新（但几乎不会，但保持）
+                }
+                blessTextEl.style.opacity = '0.3';
+                setTimeout(() => {
+                    blessTextEl.innerHTML = blessings[safeIndex];
+                    blessTextEl.style.opacity = '1';
+                    currentIndex = safeIndex;
+                    // 更新点
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === safeIndex);
+                    });
+                }, 150);
+            }
+
+            // 随机切换（避免连续相同）
+            function randomBlessing() {
+                let newIndex = Math.floor(Math.random() * blessings.length);
+                // 如果只有一个祝福，或者随机结果和当前相同，则再随机一次（最多尝试5次）
+                if (blessings.length > 1) {
+                    let attempts = 0;
+                    while (newIndex === currentIndex && attempts < 10) {
+                        newIndex = Math.floor(Math.random() * blessings.length);
+                        attempts++;
+                    }
+                }
+                updateBlessing(newIndex);
+            }
+
+            // 下一个（顺序）
+            function nextBlessing() {
+                updateBlessing(currentIndex + 1);
+            }
+
+            // 绑定按钮点击——随机换一句（更有惊喜）
+            blessBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 增加微小的触感反馈
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(12);
+                }
+                randomBlessing();
+            });
+
+            // 点击月亮 —— 顺序切换，带一点温柔感
+            moonClick.addEventListener('click', function() {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(8);
+                }
+                nextBlessing();
+            });
+
+            // 点击小点可以切换对应祝福
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (window.navigator.vibrate) {
+                        window.navigator.vibrate(5);
+                    }
+                    updateBlessing(idx);
+                });
+            });
+
+            // ---------- 动态生成星星背景 ----------
+            function generateStars() {
+                const starsContainer = document.getElementById('stars');
+                const starCount = 70; // 星星数量
+                for (let i = 0; i < starCount; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    const size = Math.random() * 2.5 + 1;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    // 随机动画延迟和持续时间
+                    star.style.animationDelay = Math.random() * 4 + 's';
+                    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    // 随机亮度
+                    star.style.opacity = Math.random() * 0.5 + 0.3;
+                    starsContainer.appendChild(star);
+                }
+            }
+
+            // ---------- 生成飘落的桂花/花瓣效果 ----------
+            function generatePetals() {
+                const petalChars = ['🌸', '🌼', '🍂', '🌿', '✨', '🥮']; // 月亮元素
+                const petalCount = 12;
+                for (let i = 0; i < petalCount; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    // 随机选择字符，偏向桂花和月亮
+                    const chars = ['🌸', '🌼', '🍂', '✨', '🥮', '🌕'];
+                    petal.textContent = chars[Math.floor(Math.random() * chars.length)];
+                    petal.style.left = Math.random() * 100 + '%';
+                    petal.style.fontSize = (Math.random() * 16 + 12) + 'px';
+                    petal.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                    petal.style.animationDelay = (Math.random() * 8) + 's';
+                    petal.style.opacity = Math.random() * 0.4 + 0.2;
+                    document.body.appendChild(petal);
+                }
+            }
+
+            // 初始化
+            generateStars();
+            generatePetals();
+
+            // 给月亮添加一点点击涟漪效果(通过按钮样式已覆盖)
+            // 确保祝福语初始正确
+            // 以防万一，设置初始祝福语和点状态
+            blessTextEl.innerHTML = blessings[0];
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === 0);
+            });
+            currentIndex = 0;
+
+            // 移动端优化：防止双击缩放（无妨）
+        })();
+    </script>
+</body>
+</html>
